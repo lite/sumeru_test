@@ -1,0 +1,24 @@
+<block tpl-id="event-hall">
+	<style>
+		#messageInput #content{height:40px; width:260px;}
+		button{width:100px; height:40px;}
+		#content{width:360px;height:300px;margin-top:10px;}
+	</style>	
+	<div align="center">
+		<h1>所有活动</h1>			
+		<div>
+	 		<button id="newEventButton">创建</button> <br/>
+	 		<select>
+			  <option value="date">时间</option>
+			  <option value="saab">距离</option>
+			</select><br/>
+		</div>
+		<div>
+			<ul>
+			{{#each data}}
+				<li>{{this.content}}</li>
+			{{/each}}
+			</ul>
+		</div>
+	</div>
+</block>

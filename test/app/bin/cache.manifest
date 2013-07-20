@@ -1,0 +1,13 @@
+CACHE MANIFEST 
+#version:1374332942653
+CACHE:
+../index.html
+sumeru.css
+sumeru.js
+app.js
+view/event_new.html
+view/hall.html
+view/index.html
+view/itworks.html
+NETWORK:
+*

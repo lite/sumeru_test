@@ -1,0 +1,19 @@
+<block tpl-id = 'event_new'>
+	<style>
+		button{width:100px; height:40px;}
+		#desc{width:360px;height:300px;margin-top:10px;}
+	</style>	
+	<div align="center">
+		<h1>发起活动</h1>
+		标签<input id = 'title'/><br/>
+		图片<input type='file' id ='image'/><br/> 
+		活动时间<input id = 'date'/><br/>
+		目标地点<select id = 'time'>
+			<option>当前地点</option>
+			<option>选择地点</option>
+			<option>输入地点</option>
+		</select><br/>
+		内容<input id ='desc'/><br/>
+		<input id = 'submitEventButton' type='button' value='提交'/>  
+	</div>
+</block>
