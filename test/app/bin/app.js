@@ -16,18 +16,18 @@ sumeru.config({
 });
 ;sumeru.router.add(
 	{
-		pattern: '/index',
-		action : 'App.index'
+		pattern: '/event_hall',
+		action : 'App.event_hall'
 	}
 );
 
-sumeru.router.setDefault('App.index');
+sumeru.router.setDefault('App.event_hall');
 
-App.index = sumeru.controller.create(function(env, session){
+App.event_hall = sumeru.controller.create(function(env, session){
 	var getMsgs = function(){       
-		session.events = env.subscribe('pub-event', function(eventCollection){
+		session.events = env.subscribe('pub-events', function(eventCollection){
 			//manipulate synced collection and bind it to serveral view blocks.
-            session.bind('event-hall', {
+            session.bind('event_hall', {
             	data    :   eventCollection.find(),
             });              
 
@@ -41,7 +41,7 @@ App.index = sumeru.controller.create(function(env, session){
 
 	//sceneRender is respond for handle view render and transition
 	env.onrender = function(doRender){
-		doRender('index', ['push', 'left']);
+		doRender('event_hall', ['push', 'left']);
 	};
 
 	//onready is respond for event binding and data manipulate
@@ -58,7 +58,54 @@ App.index = sumeru.controller.create(function(env, session){
 	
 	var newEvent = function(){
 		env.redirect('/event_new');
+		// env.redirect('/event',{id:'51eab8f007d17c15c0000000'});	
 	}		
+});;sumeru.router.add(
+	{
+		pattern: '/event_view',
+		action : 'App.event_view'
+	}
+);
+
+App.event_view = sumeru.controller.create(function(env, session, param){
+	// console.log("param.a" + param.a);
+	var getMsgs = function(){       
+		session.events = env.subscribe('pub-event', function(eventCollection){
+			//manipulate synced collection and bind it to serveral view blocks.
+			session.bind('event_view', {
+            	data : eventCollection.find({'smr_id': param.a}),
+            	// data : eventCollection.find(),
+            });              
+
+        });
+	};	
+
+	// onload is respond for handle all data subscription
+	env.onload = function(){  
+		return [getMsgs];
+	};
+
+	//sceneRender is respond for handle view render and transition
+	env.onrender = function(doRender){
+		doRender('event_view', ['push', 'left']);
+	};
+
+	//onready is respond for event binding and data manipulate
+	env.onready = function(){			
+		session.event('event_view', function(){     
+			var backHomeButton = document.getElementById('backHomeButton');
+			backHomeButton.addEventListener('click', backHome); 
+        });
+	};
+
+	env.destroy = function(){
+		this.destroy();
+	};
+
+	var backHome = function(){
+		env.redirect('/event_hall');
+	};
+
 });;sumeru.router.add(
 	{
 		pattern: '/event_new',
@@ -68,11 +115,7 @@ App.index = sumeru.controller.create(function(env, session){
 
 App.event_new = sumeru.controller.create(function(env, session){
 	var getMsgs = function(){       
-		session.events = env.subscribe('pub-event', function(eventCollection){
-			//manipulate synced collection and bind it to serveral view blocks.
-            session.bind('event-hall', {
-            	data    :   eventCollection.find(),
-            });              
+		session.events = env.subscribe('pub-events', function(eventCollection){
 
         });
 	};	
@@ -121,7 +164,7 @@ App.event_new = sumeru.controller.create(function(env, session){
        	});
        	session.events.save();
        	
-       	env.redirect('/index');
+       	env.redirect('/event_hall');
 	};
 
 });;sumeru.router.add(

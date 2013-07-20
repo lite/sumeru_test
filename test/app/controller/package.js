@@ -1,5 +1,6 @@
 sumeru.packages(
-	'index.js',
+	'event_hall.js',
+	'event_view.js',
 	'event_new.js',
 	'hall.js'
 );

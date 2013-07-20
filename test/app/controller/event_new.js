@@ -7,11 +7,7 @@ sumeru.router.add(
 
 App.event_new = sumeru.controller.create(function(env, session){
 	var getMsgs = function(){       
-		session.events = env.subscribe('pub-event', function(eventCollection){
-			//manipulate synced collection and bind it to serveral view blocks.
-            session.bind('event-hall', {
-            	data    :   eventCollection.find(),
-            });              
+		session.events = env.subscribe('pub-events', function(eventCollection){
 
         });
 	};	
@@ -60,7 +56,7 @@ App.event_new = sumeru.controller.create(function(env, session){
        	});
        	session.events.save();
        	
-       	env.redirect('/index');
+       	env.redirect('/event_hall');
 	};
 
 });

@@ -1,4 +1,4 @@
-<block tpl-id="event-hall">
+<block tpl-id="event_hall">
 	<style>
 		button{width:100px; height:40px;}
 	</style>	
@@ -15,8 +15,7 @@
 			<ul>
 			{{#each data}}
 				<li>
-					<a href="/event?id={{ this.getId() }}">
-						<div class="event_title">{{this.title}}</div>
+					<a href="/debug.html#/event_view!a={{ this.smr_id}}">{{this.title}}
 						<div class="event_time">{{this.time }}</div>
 						<div class="event_address">{{this.address }}</div>
 						<div class="event_desc">{{this.desc }}</div>
