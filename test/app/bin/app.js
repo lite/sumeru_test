@@ -25,10 +25,10 @@ sumeru.router.setDefault('App.index');
 
 App.index = sumeru.controller.create(function(env, session){
 	var getMsgs = function(){       
-		session.messages = env.subscribe('pub-message', function(msgCollection){
+		session.events = env.subscribe('pub-event', function(eventCollection){
 			//manipulate synced collection and bind it to serveral view blocks.
             session.bind('event-hall', {
-            	data    :   msgCollection.find(),
+            	data    :   eventCollection.find(),
             });              
 
         });
@@ -52,9 +52,12 @@ App.index = sumeru.controller.create(function(env, session){
         });
 	};
 
+	env.destroy = function(){
+		this.destroy();
+	};
+	
 	var newEvent = function(){
 		env.redirect('/event_new');
-		env.refresh();
 	}		
 });;sumeru.router.add(
 	{
@@ -65,10 +68,10 @@ App.index = sumeru.controller.create(function(env, session){
 
 App.event_new = sumeru.controller.create(function(env, session){
 	var getMsgs = function(){       
-		session.messages = env.subscribe('pub-message', function(msgCollection){
+		session.events = env.subscribe('pub-event', function(eventCollection){
 			//manipulate synced collection and bind it to serveral view blocks.
             session.bind('event-hall', {
-            	data    :   msgCollection.find(),
+            	data    :   eventCollection.find(),
             });              
 
         });
@@ -92,21 +95,33 @@ App.event_new = sumeru.controller.create(function(env, session){
         });
 	};
 
+	env.destroy = function(){
+		this.destroy();
+	};
+
 	var submitEvent = function(){
-		var input = document.getElementById('desc'),
-        	inputVal = input.value.trim();		
-       	if (inputVal == '') {
+		var event_title = document.getElementById('event_title');
+		event_title = event_title.value.trim();	
+		if (event_title == '') {
            return false; 
        	};
-       	session.messages.add({
-           content : inputVal,         
-       	});
-       	session.messages.save();
        	
-       	// return the index page
+		var event_time = document.getElementById('event_time');
+		event_time = event_time.value.trim();	
+		var event_address = document.getElementById('event_address');
+		event_address = event_address.value.trim();	
+		var event_desc = document.getElementById('event_desc');
+		event_desc = event_desc.value.trim();	
+       	
+       	session.events.add({
+       		title : event_title,         
+       		time : event_time,         
+       		address : event_address,         
+           	desc : event_desc,         
+       	});
+       	session.events.save();
+       	
        	env.redirect('/index');
-		env.refresh();
-        
 	};
 
 });;sumeru.router.add(

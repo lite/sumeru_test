@@ -14,7 +14,13 @@
 		<div>
 			<ul>
 			{{#each data}}
-				<li>{{this.content}}</li>
+				<li>
+					<div class="event_title">{{this.title}}</div>
+					<div class="event_time">{{this.time }}</div>
+					<div class="event_address">{{this.address }}</div>
+					<div class="event_desc">{{this.desc }}</div>
+					</div>
+				</li>
 			{{/each}}
 			</ul>
 		</div>

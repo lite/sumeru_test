@@ -9,10 +9,10 @@ sumeru.router.setDefault('App.index');
 
 App.index = sumeru.controller.create(function(env, session){
 	var getMsgs = function(){       
-		session.messages = env.subscribe('pub-message', function(msgCollection){
+		session.events = env.subscribe('pub-event', function(eventCollection){
 			//manipulate synced collection and bind it to serveral view blocks.
             session.bind('event-hall', {
-            	data    :   msgCollection.find(),
+            	data    :   eventCollection.find(),
             });              
 
         });
