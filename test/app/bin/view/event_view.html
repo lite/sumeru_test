@@ -7,8 +7,9 @@
 				<div class="event_img">图片</div>
 				<div class="event_content">
 					<div class="event_time">{{this.time }}</div>
+					<div class="event_desc">{{this.desc }}</div>
 					<div class="event_address">{{this.address }}</div>
-			 		<div class="event_desc">{{this.desc }}</div>
+					<img style="margin:20px" width="400" height="400" src="http://api.map.baidu.com/staticimage?width=400&height=400&zoom=10&labels={{this.address }}&&labelStyles={{this.address }},1,24,0x000000,0xcccccc,0" />
 		 		</div>
 			{{/each}}
 	 	</div>
