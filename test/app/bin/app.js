@@ -47,8 +47,8 @@ App.event_hall = sumeru.controller.create(function(env, session){
 	//onready is respond for event binding and data manipulate
 	env.onready = function(){			
 		session.event('event-hall', function(){     
-			var newEventButton = document.getElementById('newEventButton');
-			newEventButton.addEventListener('click', newEvent); 
+			// var newEventButton = document.getElementById('newEventButton');
+			// newEventButton.addEventListener('click', newEvent); 
         });
 	};
 
@@ -70,11 +70,10 @@ App.event_hall = sumeru.controller.create(function(env, session){
 App.event_view = sumeru.controller.create(function(env, session, param){
 	// console.log("param.a" + param.a);
 	var getMsgs = function(){       
-		session.events = env.subscribe('pub-event', function(eventCollection){
+		session.events = env.subscribe('pub-events', function(eventCollection){
 			//manipulate synced collection and bind it to serveral view blocks.
 			session.bind('event_view', {
             	data : eventCollection.find({'smr_id': param.a}),
-            	// data : eventCollection.find(),
             });              
 
         });
@@ -93,8 +92,6 @@ App.event_view = sumeru.controller.create(function(env, session, param){
 	//onready is respond for event binding and data manipulate
 	env.onready = function(){			
 		session.event('event_view', function(){     
-			var backHomeButton = document.getElementById('backHomeButton');
-			backHomeButton.addEventListener('click', backHome); 
         });
 	};
 
@@ -136,10 +133,6 @@ App.event_new = sumeru.controller.create(function(env, session){
 			var submitEventButton = document.getElementById('submitEventButton');
 			submitEventButton.addEventListener('click', submitEvent); 
         });
-	};
-
-	env.destroy = function(){
-		this.destroy();
 	};
 
 	var submitEvent = function(){

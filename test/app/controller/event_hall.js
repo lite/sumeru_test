@@ -31,8 +31,8 @@ App.event_hall = sumeru.controller.create(function(env, session){
 	//onready is respond for event binding and data manipulate
 	env.onready = function(){			
 		session.event('event-hall', function(){     
-			var newEventButton = document.getElementById('newEventButton');
-			newEventButton.addEventListener('click', newEvent); 
+			// var newEventButton = document.getElementById('newEventButton');
+			// newEventButton.addEventListener('click', newEvent); 
         });
 	};
 

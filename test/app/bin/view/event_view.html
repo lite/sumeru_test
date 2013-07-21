@@ -1,18 +1,15 @@
 <block tpl-id="event_view">
-	<style>
-		button{width:100px; height:40px;}
-	</style>	
-	<div align="center">
-		<h1>活动详情</h1>
-		<div>
-	 		<button id="backHomeButton">返回</button> <br/>
-	 	</div>
+	<h3>活动详情</h3>
+	<div align="center" id='event_view'>
 	 	<div>
 	 		{{#each data}}
-				<div><label>标题</label>{{this.title}}</div><br/>
-				<div><label>时间</label>{{this.time }}</div><br/>
-				<div><label>地点</label>{{this.address }}</div><br/>
-		 		<div><label>内容</label>{{this.desc }}</div><br/>
+				<div class="event_title">{{this.title}}</div>
+				<div class="event_img">图片</div>
+				<div class="event_content">
+					<div class="event_time">{{this.time }}</div>
+					<div class="event_address">{{this.address }}</div>
+			 		<div class="event_desc">{{this.desc }}</div>
+		 		</div>
 			{{/each}}
 	 	</div>
 	</div>

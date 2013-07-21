@@ -30,10 +30,6 @@ App.event_new = sumeru.controller.create(function(env, session){
         });
 	};
 
-	env.destroy = function(){
-		this.destroy();
-	};
-
 	var submitEvent = function(){
 		var event_title = document.getElementById('event_title');
 		event_title = event_title.value.trim();	
